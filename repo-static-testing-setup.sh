@@ -23,13 +23,17 @@ npx husky-init && npm install prettier lint-staged -D
 # HUSKY
 ############################
 
-npx husky add .husky/pre-commit "npm run validate"
+npx husky add .husky/pre-commit "npx lint-staged"
+
+mv .husky/pre-commit .husky/pre-commit.bak
+sed 's/npm test/npm run validate/g' .husky/pre-commit.bak > .husky/pre-commit
+rm .husky/pre-commit.bak
 
 ############################
 # VALIDATION SCRIPTS
 ############################
 
-validation_scripts='{ "lint": "eslint src --ext .ts,.tsx", "check-types": "tsc --noEmit", "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"", "validate": "npm run lint && npm run check-types && npm test" }'
+validation_scripts='{ "lint": "eslint src --ext .ts,.tsx", "check-types": "tsc --noEmit", "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"", "validate": "npm run lint && npm run check-types && npm test", "format": "npm run prettier -- --write" }'
 
 # Check if the "scripts" key already exists in package.json
 if grep -q "scripts" package.json; then

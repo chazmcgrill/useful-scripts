@@ -10,11 +10,11 @@ repo-static-testing-setup.sh
 
 Setup of node project with the following:
 
-- Setup of lint staged
-- Husky precommit hooks
-- Prettier setup
-- Validation npm script script
+-   Setup of lint staged
+-   Husky precommit hooks
+-   Prettier setup
+-   Validation npm script script
 
-usage
+## usage
 
 `source repo-static-testing-setup.sh ./folder-to-run-on`
