@@ -23,6 +23,9 @@ npx husky-init && npm install prettier lint-staged -D
 # HUSKY
 ############################
 
+npm pkg set scripts.prepare="husky install"
+npm run prepare
+
 npx husky add .husky/pre-commit "npx lint-staged"
 
 mv .husky/pre-commit .husky/pre-commit.bak
@@ -64,8 +67,7 @@ echo '{
   "singleQuote": true,
   "tabWidth": 4,
   "trailingComma": "all",
-  "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "useTabs": false
 }' > .prettierrc
 
 
